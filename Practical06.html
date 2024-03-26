@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Form Validation</title>
+<script>
+function validateForm() {
+    var name = document.forms["myForm"]["name"].value;
+    var email = document.forms["myForm"]["email"].value;
+    var password = document.getElementById("password").value;
+    
+    if (name == "") {
+        alert("Name must be filled out");
+        return false;
+    }
+    if (email == "") {
+        alert("Email must be filled out");
+        return false;
+    }
+    if (!validateEmail(email)) {
+        alert("Invalid email address");
+        return false;
+    }
+    return true;
+}
+
+function validateEmail(email) {
+    var re = /\S+@\S+\.\S+/;
+    return re.test(email);
+}
+if (password.length < 8) {
+        alert("Password must be at least 8 characters long");
+        return false;
+    }
+    if (!/[A-Z]/.test(password)) {
+        alert("Password must contain at least one uppercase letter");
+        return false;
+    }
+
+    if (!/[a-z]/.test(password)) {
+        alert("Password must contain at least one lowercase letter");
+        return false;
+    }
+    if (!/\d/.test(password)) {
+        alert("Password must contain at least one digit");
+        return false;
+    }
+
+    if (!/[\W_]/.test(password)) {
+        alert("Password must contain at least one special character");
+        return false;
+    }
+</script>
+<style>
+    body{
+        text-align: center;
+        overflow: hidden;
+
+    }
+    .bordered-area {
+    border: 2px solid black; 
+    padding: 20px;
+    margin: 420px;
+    border-radius: 10px
+    }
+    h2{
+        color: crimson;
+    }
+</style>
+</head>
+<body>
+    <div class="bordered-area">
+<h2>Form Validation</h2>
+
+<form name="myForm" onsubmit="return validateForm()" method="post">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name"><br><br>
+    
+    <label for="email">Email:</label>
+    <input type="text" id="email" name="email"><br><br>
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password"><br><br>
+    
+    <input type="submit" value="Submit">
+</form>
+</div>
+</body>
+</html>
